@@ -21,7 +21,7 @@ import java.util.Iterator;
 
 public class CustomAccessDecisionManager implements AccessDecisionManager {
 
-
+///
     @Override
     public void decide(Authentication authentication, Object o, Collection<ConfigAttribute> collection) throws AccessDeniedException, InsufficientAuthenticationException {
         Iterator<ConfigAttribute> iterator = collection.iterator();
