@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.secdemo.dao.SysDictDataDao">
+
+  <resultMap id="sysdictresultMap" type="SysDictData">
+      <result property="dictCode" column="dict_code"></result>
+      <result property="dictSort" column="dict_sort"></result>
+      <result property="dictLable" column="dict_lable"></result>
+      <result property="dictValue" column="dict_value"></result>
+      <result property="dictType" column="dict_type"></result>
+      <result property="cssClass" column="css_class"></result>
+      <result property="listClass" column="list_class"></result>
+      <result property="isDefault" column="is_default"></result>
+      <result property="status" column="status"></result>
+      <result property="createBy" column="create_by"></result>
+      <result property="createTime" column="create_time"></result>
+      <result property="updateBy" column="update_by"></result>
+      <result property="updateTime" column="update_time"></result>
+      <result property="remark" column="remark"></result>
+  </resultMap>
+
+  <sql id="sysdictVo">
+      SELECT
+	d.dict_code dict_code,
+	d.dict_sort dict_sort,
+	d.dict_label dict_lable,
+	d.dict_value dict_value,
+	d.dict_type dict_type,
+	d.css_class css_class,
+	d.list_class list_class,
+	d.is_default is_default,
+	d.`status` `status`,
+	d.create_by create_by,
+	d.create_time create_time,
+	d.update_by update_by,
+	d.update_time update_time,
+	d.remark remark
+    FROM
+	sys_dict_data d
+  </sql>
+
+   <select id="getDictDataByType" resultMap="sysdictresultMap" parameterType="String">
+      <include refid="sysdictVo"/>
+       where status = '0' and dict_type = #{type} order by dict_sort asc
+   </select>
+
+</mapper> 
